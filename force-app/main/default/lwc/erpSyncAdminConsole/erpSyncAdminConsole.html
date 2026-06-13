@@ -1,0 +1,162 @@
+<template>
+    <lightning-card title="ErpSync Admin" icon-name="custom:custom62">
+        <template if:true={isBusy}>
+            <lightning-spinner alternative-text="Working" size="medium"></lightning-spinner>
+        </template>
+
+        <div class="header-actions">
+            <lightning-button-group>
+                <lightning-button
+                    label="Nouveau connecteur"
+                    icon-name="utility:add"
+                    onclick={handleNewSystem}>
+                </lightning-button>
+                <lightning-button
+                    label="Nouveau flux"
+                    icon-name="utility:flow"
+                    onclick={handleNewFlow}>
+                </lightning-button>
+                <lightning-button
+                    label="Nouveau mapping"
+                    icon-name="utility:merge_field"
+                    onclick={handleNewMapping}>
+                </lightning-button>
+                <lightning-button
+                    label="Flux dus"
+                    icon-name="utility:clock"
+                    onclick={handleRunDueScheduledFlows}>
+                </lightning-button>
+                <lightning-button
+                    label="Retries dus"
+                    icon-name="utility:refresh"
+                    onclick={handleRunDueRetries}>
+                </lightning-button>
+            </lightning-button-group>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh"
+                title="Refresh"
+                onclick={handleRefresh}>
+            </lightning-button-icon>
+        </div>
+
+        <template if:true={errorMessage}>
+            <div class="error-box" role="alert">{errorMessage}</div>
+        </template>
+
+        <section class="metrics" aria-label="ErpSync metrics">
+            <div class="metric">
+                <span class="metric-label">Systemes</span>
+                <strong>{summary.systemCount}</strong>
+                <span>{summary.activeSystemCount} actifs</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Flux</span>
+                <strong>{summary.flowCount}</strong>
+                <span>{summary.activeFlowCount} actifs</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Erreurs ouvertes</span>
+                <strong>{summary.openErrorCount}</strong>
+                <span>{summary.runningExecutionCount} executions en cours</span>
+            </div>
+            <div class="metric wide">
+                <span class="metric-label">Derniere execution</span>
+                <template if:true={summary.lastExecutionId}>
+                    <a href={summary.lastExecutionUrl}>{summary.lastExecutionName}</a>
+                    <span>{summary.lastExecutionStatus}</span>
+                </template>
+                <template if:false={summary.lastExecutionId}>
+                    <strong>Aucune</strong>
+                    <span>Pas encore de synchronisation</span>
+                </template>
+            </div>
+        </section>
+
+        <lightning-tabset class="tabs">
+            <lightning-tab label="Connecteurs">
+                <lightning-datatable
+                    key-field="id"
+                    data={systems}
+                    columns={systemColumns}
+                    onrowaction={handleSystemAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Catalogue">
+                <lightning-datatable
+                    key-field="connectorType"
+                    data={connectorCatalog}
+                    columns={catalogColumns}
+                    onrowaction={handleCatalogAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Aide">
+                <section class="help-grid" aria-label="Guide ErpSync">
+                    <template for:each={helpSections} for:item="section">
+                        <article key={section.id} class="help-card">
+                            <h3>{section.title}</h3>
+                            <p>{section.summary}</p>
+                            <ul>
+                                <template for:each={section.items} for:item="item">
+                                    <li key={item}>{item}</li>
+                                </template>
+                            </ul>
+                        </article>
+                    </template>
+                </section>
+            </lightning-tab>
+            <lightning-tab label="Flux">
+                <lightning-datatable
+                    key-field="id"
+                    data={flows}
+                    columns={flowColumns}
+                    onrowaction={handleFlowAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Mappings">
+                <lightning-datatable
+                    key-field="id"
+                    data={mappings}
+                    columns={mappingColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Executions">
+                <lightning-datatable
+                    key-field="id"
+                    data={executions}
+                    columns={executionColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Erreurs">
+                <lightning-datatable
+                    key-field="id"
+                    data={errors}
+                    columns={errorColumns}
+                    onrowaction={handleErrorAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Liens records">
+                <lightning-datatable
+                    key-field="id"
+                    data={recordLinks}
+                    columns={recordLinkColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+            <lightning-tab label="Logs records">
+                <lightning-datatable
+                    key-field="id"
+                    data={recordLogs}
+                    columns={recordLogColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

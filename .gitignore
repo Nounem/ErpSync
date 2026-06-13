@@ -1,0 +1,16 @@
+# Salesforce local state
+.sf/
+.sfdx/
+
+# Editor and OS files
+.vscode/
+.DS_Store
+
+# Dependencies and generated output
+node_modules/
+coverage/
+dist/
+build/
+
+# Logs
+*.log

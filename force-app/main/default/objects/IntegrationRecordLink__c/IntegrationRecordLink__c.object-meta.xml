@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Persistent link between a Salesforce record and an external ERP/CRM record.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <label>Integration Record Link</label>
+    <nameField>
+        <displayFormat>LINK-{000000}</displayFormat>
+        <label>Integration Record Link Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Integration Record Links</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

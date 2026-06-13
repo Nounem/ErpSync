@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TransformType__c</fullName>
+    <label>Transform Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Trim</fullName>
+                <default>false</default>
+                <label>Trim</label>
+            </value>
+            <value>
+                <fullName>Uppercase</fullName>
+                <default>false</default>
+                <label>Uppercase</label>
+            </value>
+            <value>
+                <fullName>Lowercase</fullName>
+                <default>false</default>
+                <label>Lowercase</label>
+            </value>
+            <value>
+                <fullName>Date Format</fullName>
+                <default>false</default>
+                <label>Date Format</label>
+            </value>
+            <value>
+                <fullName>Boolean Mapping</fullName>
+                <default>false</default>
+                <label>Boolean Mapping</label>
+            </value>
+            <value>
+                <fullName>Picklist Mapping</fullName>
+                <default>false</default>
+                <label>Picklist Mapping</label>
+            </value>
+            <value>
+                <fullName>Custom Apex</fullName>
+                <default>false</default>
+                <label>Custom Apex</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

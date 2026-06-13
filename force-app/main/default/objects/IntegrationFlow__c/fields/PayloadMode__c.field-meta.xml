@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PayloadMode__c</fullName>
+    <label>Payload Mode</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Envelope</fullName>
+                <default>true</default>
+                <label>Envelope</label>
+            </value>
+            <value>
+                <fullName>Raw Mapping</fullName>
+                <default>false</default>
+                <label>Raw Mapping</label>
+            </value>
+            <value>
+                <fullName>Root Key</fullName>
+                <default>false</default>
+                <label>Root Key</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

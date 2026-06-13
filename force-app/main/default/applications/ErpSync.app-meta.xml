@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Admin console for configurable ERP/CRM integrations.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>ErpSync</label>
+    <navType>Standard</navType>
+    <tabs>ErpSync_Admin</tabs>
+    <tabs>IntegrationSystem__c</tabs>
+    <tabs>IntegrationFlow__c</tabs>
+    <tabs>IntegrationMapping__c</tabs>
+    <tabs>SyncExecution__c</tabs>
+    <tabs>SyncError__c</tabs>
+    <tabs>IntegrationRecordLink__c</tabs>
+    <tabs>SyncRecordLog__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>
