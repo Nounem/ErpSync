@@ -4,6 +4,10 @@
 
 Synchroniser des comptes Salesforce vers les companies Freshdesk. Le cas de depart est `Account` Salesforce vers `companies` Freshdesk.
 
+## Niveau de compatibilite ErpSync
+
+L'endpoint `/companies` est compatible avec `Generic REST` pour les champs simples. Si le client veut renseigner `domains`, verifier le format attendu car ce champ peut etre un tableau.
+
 ## Ce qu'il faut preparer cote Freshdesk
 
 - Un compte Freshdesk.
@@ -82,4 +86,3 @@ Synchroniser des comptes Salesforce vers les companies Freshdesk. Le cas de depa
 ## Documentation officielle
 
 - https://developers.freshdesk.com/api/#companies
-

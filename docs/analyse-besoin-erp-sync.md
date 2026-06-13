@@ -81,19 +81,19 @@ Catalogue recommande:
 | Sage | ERP / Finance | Connecteur dedie selon produit Sage |
 | QuickBooks | Comptabilite | Generic REST possible |
 | Xero | Comptabilite | Generic REST possible |
-| Zoho | CRM / Suite | Generic REST possible |
+| Zoho | CRM / Suite | Payload array ou connecteur dedie recommande |
 | Pipedrive | CRM | Generic REST possible |
 | Shopify | Commerce | Generic REST possible avec vigilance, GraphQL a privilegier pour nouvelles apps |
 | WooCommerce | Commerce | Generic REST possible |
 | Stripe | Paiement | Connecteur dedie recommande, payload form-encoded |
 | PayPal | Paiement | Generic REST possible |
 | Mailchimp | Marketing | Generic REST possible |
-| Klaviyo | Marketing | Generic REST possible |
+| Klaviyo | Marketing | Generic REST possible avec valeur fixe `data.type` a gerer |
 | Zendesk | Support | Generic REST possible |
 | Freshdesk | Support | Generic REST possible |
-| Jira | ITSM / Projet | Generic REST possible |
+| Jira | ITSM / Projet | Generic REST possible avec valeurs projet/type a cadrer |
 | Slack / Teams | Notifications | Webhook ou Generic REST |
-| Notion / Airtable | Productivite / Base | Generic REST possible |
+| Notion / Airtable | Productivite / Base | Payload complexe ou connecteur dedie recommande |
 
 Brevo doit etre explicitement prevu dans le MVP technique car son API couvre plusieurs cas utiles: contacts, messages transactionnels, campagnes, tracking, eCommerce et webhooks. Pour Brevo, le mode de payload `Raw Mapping` ou `Root Key` est important afin d'envoyer les champs dans la structure attendue par l'endpoint.
 

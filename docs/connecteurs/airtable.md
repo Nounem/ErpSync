@@ -4,6 +4,10 @@
 
 Synchroniser des comptes Salesforce vers une table Airtable. Le cas de depart est `Account` Salesforce vers des `records` Airtable.
 
+## Niveau de compatibilite ErpSync
+
+L'endpoint Airtable est correct, mais le create records officiel attend un tableau `records`. Le moteur `Generic REST` actuel ne fabrique pas encore ce tableau automatiquement. Garder donc ce template comme cadrage et prevoir un mode payload array ou un adaptateur Airtable avant activation.
+
 ## Ce qu'il faut preparer cote Airtable
 
 - Un compte Airtable.
@@ -33,7 +37,7 @@ Synchroniser des comptes Salesforce vers une table Airtable. Le cas de depart es
 6. Remplacer `BASE_ID` et `TABLE_ID`.
 7. Verifier les noms de colonnes.
 8. Cliquer sur `Valider`.
-9. Activer apres test.
+9. Garder inactif tant que le payload `records[]` n'est pas gere.
 
 ## Template conseille
 
@@ -46,8 +50,8 @@ Synchroniser des comptes Salesforce vers une table Airtable. Le cas de depart es
 | External Object | `records` |
 | Endpoint Path | `/BASE_ID/TABLE_ID` |
 | HTTP Method | `POST` |
-| Payload Mode | `Root Key` |
-| Payload Root Key | `fields` |
+| Payload Mode | `Raw Mapping` pour cadrage, puis payload array requis |
+| Payload Root Key | Non applicable |
 
 ## Endpoints utiles
 
@@ -62,19 +66,23 @@ Synchroniser des comptes Salesforce vers une table Airtable. Le cas de depart es
 
 | Salesforce | Airtable |
 | --- | --- |
-| `Name` | `Name` |
-| `Phone` | `Phone` |
-| `Website` | `Website` |
+| `Name` | `fields.Name` |
+| `Phone` | `fields.Phone` |
+| `Website` | `fields.Website` |
 
 ## Exemple de payload attendu
 
 ```json
 {
-  "fields": {
-    "Name": "Acme France",
-    "Phone": "+33123456789",
-    "Website": "https://www.acme.example"
-  }
+  "records": [
+    {
+      "fields": {
+        "Name": "Acme France",
+        "Phone": "+33123456789",
+        "Website": "https://www.acme.example"
+      }
+    }
+  ]
 }
 ```
 
@@ -82,9 +90,8 @@ Synchroniser des comptes Salesforce vers une table Airtable. Le cas de depart es
 
 - Les noms de colonnes Airtable sont sensibles aux espaces et majuscules.
 - Remplacer `BASE_ID` et `TABLE_ID` avant activation.
-- Airtable peut aussi accepter un tableau `records` pour le batch; cela demandera un mode payload dedie si necessaire.
+- Airtable utilise `records` comme tableau; cela demande un mode payload dedie ou un adaptateur.
 
 ## Documentation officielle
 
 - https://airtable.com/developers/web/api/create-records
-

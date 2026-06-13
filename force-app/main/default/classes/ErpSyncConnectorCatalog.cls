@@ -6,7 +6,6 @@ public with sharing class ErpSyncConnectorCatalog {
         'Business Central',
         'QuickBooks',
         'Xero',
-        'Zoho',
         'Pipedrive',
         'Shopify',
         'WooCommerce',
@@ -17,8 +16,7 @@ public with sharing class ErpSyncConnectorCatalog {
         'Freshdesk',
         'Jira',
         'Slack',
-        'Notion',
-        'Airtable'
+        'Notion'
     };
 
     public static Boolean isGenericRestCompatible(String connectorType) {
@@ -57,10 +55,10 @@ public with sharing class ErpSyncConnectorCatalog {
             ),
             item(
                 'HubSpot', 'CRM / Marketing', 'Generic REST', 'Private app token ou OAuth via Named Credential',
-                'https://api.hubapi.com', 'Ready via Generic REST', 'HubSpot', '/crm/objects/2026-03/contacts', 'POST',
+                'https://api.hubapi.com', 'Ready via Generic REST', 'HubSpot', '/crm/v3/objects/contacts', 'POST',
                 'Raw Mapping', null, 'Contact', 'contacts',
-                'Utiliser les endpoints versionnes recents et le payload properties.',
-                'HubSpot attend souvent un objet properties; les associations seront un connecteur dedie ensuite.',
+                'Utiliser le payload properties; les APIs date-versionnees peuvent etre adoptees apres verification.',
+                'HubSpot attend un objet properties; les associations seront un connecteur dedie ensuite.',
                 contactMappings('properties.email', 'properties.firstname', 'properties.lastname', 'properties.phone')
             ),
             item(
@@ -81,10 +79,10 @@ public with sharing class ErpSyncConnectorCatalog {
             ),
             item(
                 'Business Central', 'ERP / Finance', 'Generic REST', 'OAuth via Named Credential',
-                'https://api.businesscentral.dynamics.com', 'Ready via Generic REST', 'BusinessCentral', '/v2.0/production/api/v2.0/companies', 'POST',
-                'Raw Mapping', null, 'Account', 'companies',
+                'https://api.businesscentral.dynamics.com', 'Ready via Generic REST', 'BusinessCentral', '/v2.0/production/api/v2.0/companies(COMPANY_ID)/customers', 'POST',
+                'Raw Mapping', null, 'Account', 'customers',
                 'APIs OData utilisables, prevoir conventions par environnement/company.',
-                'Renseigner tenant, environment et company dans l endpoint avant activation.',
+                'Renseigner environment et COMPANY_ID dans l endpoint avant activation.',
                 accountMappings('displayName', 'phoneNumber', 'website')
             ),
             item(
@@ -128,11 +126,11 @@ public with sharing class ErpSyncConnectorCatalog {
                 accountMappings('Name', 'Phones.PhoneNumber', 'Website')
             ),
             item(
-                'Zoho', 'CRM / Suite', 'Generic REST', 'OAuth via Named Credential',
-                'https://www.zohoapis.com', 'Ready via Generic REST', 'Zoho', '/crm/v8/Accounts', 'POST',
+                'Zoho', 'CRM / Suite', 'Dedicated planned', 'OAuth via Named Credential',
+                'https://www.zohoapis.com', 'Adapter planned', 'Zoho', '/crm/v8/Accounts', 'POST',
                 'Root Key', 'data', 'Account', 'Accounts',
-                'Adapter par region Zoho et module cible.',
-                'Changer la base URL si le data center Zoho est EU/IN/AU et verifier le module CRM cible.',
+                'Adapter par region Zoho et module cible; le body officiel attend data comme tableau.',
+                'Changer la base URL si le data center Zoho est EU/IN/AU et prevoir un payload array avant activation.',
                 accountMappings('Account_Name', 'Phone', 'Website')
             ),
             item(
@@ -232,12 +230,12 @@ public with sharing class ErpSyncConnectorCatalog {
                 accountMappings('properties.Name.title.0.text.content', 'properties.Phone.phone_number', 'properties.Website.url')
             ),
             item(
-                'Airtable', 'Base de donnees', 'Generic REST', 'Personal access token via Named Credential',
-                'https://api.airtable.com/v0', 'Ready via Generic REST', 'Airtable', '/BASE_ID/TABLE_ID', 'POST',
-                'Root Key', 'fields', 'Account', 'records',
-                'Records via Root Key fields ou payload adapte.',
-                'Remplacer BASE_ID et TABLE_ID puis aligner les noms de colonnes Airtable.',
-                accountMappings('Name', 'Phone', 'Website')
+                'Airtable', 'Base de donnees', 'Dedicated planned', 'Personal access token via Named Credential',
+                'https://api.airtable.com/v0', 'Adapter planned', 'Airtable', '/BASE_ID/TABLE_ID', 'POST',
+                'Raw Mapping', null, 'Account', 'records',
+                'Airtable attend un payload records[] avec fields.',
+                'Remplacer BASE_ID et TABLE_ID puis prevoir un payload array records avant activation.',
+                accountMappings('fields.Name', 'fields.Phone', 'fields.Website')
             ),
             item(
                 'Other', 'Autre', 'Generic REST / Dedicated', 'Selon API',

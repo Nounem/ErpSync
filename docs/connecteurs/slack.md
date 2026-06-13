@@ -4,6 +4,10 @@
 
 Envoyer un message Slack depuis Salesforce. Le cas de depart est une notification vers `chat.postMessage`.
 
+## Niveau de compatibilite ErpSync
+
+L'endpoint est compatible avec `Generic REST`, mais Slack demande au minimum `channel` et `text`. Le plus simple est de stocker le canal dans un champ Salesforce ou de creer un flux specifique qui compose le message.
+
 ## Ce qu'il faut preparer cote Slack
 
 - Un workspace Slack.
@@ -73,10 +77,10 @@ Envoyer un message Slack depuis Salesforce. Le cas de depart est une notificatio
 
 - `channel` est obligatoire.
 - Le template installe une base de travail, mais il faut ajouter le canal et composer le message.
+- Si le canal est toujours le meme, prevoir un champ Salesforce dedie ou une evolution de mapping valeur fixe.
 - Tester dans un canal non critique avant production.
 - Eviter d'envoyer des donnees personnelles sensibles dans Slack.
 
 ## Documentation officielle
 
 - https://docs.slack.dev/reference/methods/chat.postMessage/
-

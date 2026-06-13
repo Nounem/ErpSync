@@ -4,6 +4,10 @@
 
 Creer des tickets Jira depuis Salesforce. Le cas de depart du template est `Account` Salesforce vers une `issue` Jira, mais en pratique on utilisera souvent `Case` Salesforce.
 
+## Niveau de compatibilite ErpSync
+
+L'endpoint `/issue` est correct, mais Jira demande des valeurs obligatoires comme `project` et `issuetype`. La version actuelle d'ErpSync ne cree pas encore proprement des valeurs fixes sans champ Salesforce source. Utiliser des champs Salesforce dedies ou prevoir un adaptateur Jira avant production.
+
 ## Ce qu'il faut preparer cote Jira
 
 - Un site Atlassian Cloud.
@@ -29,7 +33,7 @@ Creer des tickets Jira depuis Salesforce. Le cas de depart du template est `Acco
 3. Ligne `Jira`.
 4. Cliquer sur `Installer`.
 5. Ouvrir le flux cree.
-6. Remplacer ou completer les mappings `project` et `issuetype`.
+6. Remplacer ou completer les mappings `project` et `issuetype` avec des champs Salesforce ou un adaptateur.
 7. Cliquer sur `Valider`.
 8. Tester sur un enregistrement Salesforce de test.
 
@@ -84,10 +88,10 @@ Jira demande au minimum le projet, le type et le resume:
 ## Points d'attention
 
 - Le template ne connait pas la cle projet du client. Il faut l'ajouter avant activation.
+- Si la cle projet et le type de ticket sont fixes, prevoir une evolution de mapping valeur fixe.
 - Jira Cloud utilise parfois le format Atlassian Document Format pour les descriptions riches.
 - Pour un vrai support client, partir plutot de `Case` Salesforce que de `Account`.
 
 ## Documentation officielle
 
 - https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/
-

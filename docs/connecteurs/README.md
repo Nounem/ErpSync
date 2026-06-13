@@ -31,6 +31,45 @@ Dans ErpSync, on met seulement:
 9. Activer le connecteur puis le flux.
 10. Lancer une premiere synchro manuelle sur un petit volume.
 
+## Lire le niveau de compatibilite
+
+Tous les guides donnent les bons endroits ou configurer Salesforce et les endpoints de depart. En revanche, tous les fournisseurs ne peuvent pas etre actives directement avec le moteur `Generic REST` actuel.
+
+| Niveau | Signification |
+| --- | --- |
+| Direct `Generic REST` | Le payload JSON attendu est simple: objet direct ou objet sous une racine. |
+| Direct avec ajustement | L'endpoint est simple, mais il faut ajouter un champ client, un scope, un header ou une valeur metier avant activation. |
+| Adaptateur ou payload dedie | L'API attend un tableau JSON, du form-urlencoded, du JSON-RPC, des valeurs fixes obligatoires ou une logique metier specifique. Le guide sert alors de cadrage. |
+
+## Synthese rapide
+
+| Connecteur | Niveau actuel |
+| --- | --- |
+| Brevo | Direct `Generic REST` |
+| HubSpot | Direct `Generic REST` |
+| Microsoft Dynamics 365 | Direct `Generic REST` pour flux simples |
+| Business Central | Direct `Generic REST` pour creation customer simple |
+| QuickBooks | Direct `Generic REST` pour creation customer simple |
+| Xero | Direct avec ajustement header `xero-tenant-id` |
+| Pipedrive | Direct `Generic REST` |
+| Shopify | Direct avec scopes Shopify et vigilance REST legacy |
+| WooCommerce | Direct `Generic REST` |
+| Zendesk | Direct `Generic REST` |
+| Freshdesk | Direct avec ajustement si champ tableau `domains` |
+| Slack | Direct avec champ Salesforce pour `channel` et `text` |
+| Mailchimp | Direct avec ajustement pour `status` |
+| Klaviyo | Adaptateur ou valeur fixe requise pour `data.type` |
+| Zoho | Adaptateur ou payload array requis pour `data[]` |
+| Airtable | Adaptateur ou payload array requis pour `records[]` |
+| Notion | Adaptateur requis pour tableaux/proprietes complexes |
+| Jira | Adaptateur ou champs Salesforce requis pour `project` et `issuetype` |
+| Stripe | Adaptateur requis pour `application/x-www-form-urlencoded` |
+| Odoo | Adaptateur requis pour JSON-RPC/metadonnees Odoo |
+| SAP | Adaptateur recommande pour OData/SAP Gateway |
+| Oracle NetSuite | Adaptateur recommande pour SuiteTalk REST |
+| Sage | Adaptateur recommande selon produit Sage |
+| PayPal | Cadrage par cas d'usage PayPal |
+
 ## Guides disponibles
 
 - [Generic REST](generic-rest.md)
@@ -59,4 +98,3 @@ Dans ErpSync, on met seulement:
 - [Notion](notion.md)
 - [Airtable](airtable.md)
 - [Other](other.md)
-

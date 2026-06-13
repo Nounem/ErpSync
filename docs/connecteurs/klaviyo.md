@@ -4,6 +4,10 @@
 
 Synchroniser des contacts Salesforce vers les profils Klaviyo. Le cas de depart est `Contact` Salesforce vers `profiles` Klaviyo.
 
+## Niveau de compatibilite ErpSync
+
+L'endpoint `/profiles` est correct, mais Klaviyo attend un payload JSON:API avec `data.type = profile`. La version actuelle d'ErpSync ne cree pas encore proprement une valeur fixe sans champ Salesforce source. Garder le flux inactif tant que cette valeur n'est pas geree par un champ Salesforce, une evolution de mapping ou un adaptateur.
+
 ## Ce qu'il faut preparer cote Klaviyo
 
 - Un compte Klaviyo.
@@ -31,7 +35,7 @@ Synchroniser des contacts Salesforce vers les profils Klaviyo. Le cas de depart 
 6. Verifier le Named Credential.
 7. Ouvrir le flux et verifier `/profiles`.
 8. Cliquer sur `Valider`.
-9. Activer apres test sur un contact.
+9. Garder inactif tant que `data.type = profile` n'est pas gere.
 
 ## Template conseille
 
@@ -89,4 +93,3 @@ Synchroniser des contacts Salesforce vers les profils Klaviyo. Le cas de depart 
 ## Documentation officielle
 
 - https://developers.klaviyo.com/en/reference/create_profile
-

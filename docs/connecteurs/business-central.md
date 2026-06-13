@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Synchroniser des comptes Salesforce vers Business Central. Le cas de depart est `Account` vers `companies` ou `customers` selon le besoin client.
+Synchroniser des comptes Salesforce vers Business Central. Le cas de depart recommande est `Account` Salesforce vers `customers` Business Central.
 
 ## Ce qu'il faut preparer cote Business Central
 
@@ -25,7 +25,7 @@ Synchroniser des comptes Salesforce vers Business Central. Le cas de depart est 
 2. Onglet `Catalogue`.
 3. Ligne `Business Central`.
 4. Cliquer sur `Installer`.
-5. Remplacer l'endpoint avec le tenant, l'environnement et la company.
+5. Remplacer l'endpoint avec l'environnement et la company.
 
 ## Template conseille
 
@@ -35,8 +35,8 @@ Synchroniser des comptes Salesforce vers Business Central. Le cas de depart est 
 | Named Credential | `BusinessCentral` |
 | Base URL | `https://api.businesscentral.dynamics.com` |
 | Salesforce Object | `Account` |
-| External Object | `companies` |
-| Endpoint Path | `/v2.0/production/api/v2.0/companies` |
+| External Object | `customers` |
+| Endpoint Path | `/v2.0/production/api/v2.0/companies(COMPANY_ID)/customers` |
 | HTTP Method | `POST` |
 | Payload Mode | `Raw Mapping` |
 
@@ -59,11 +59,11 @@ Synchroniser des comptes Salesforce vers Business Central. Le cas de depart est 
 
 ## Points d'attention
 
-- Le template doit etre adapte avec le vrai `companyId`.
+- Le template doit etre adapte avec le vrai `COMPANY_ID`.
+- L'endpoint `/companies` sert surtout a lister les societes; pour creer un client, utiliser `/customers` sous la company.
 - Certains updates Business Central demandent un header ETag.
 - Prevoir un flux par company si le client a plusieurs societes.
 
 ## Documentation officielle
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/
-

@@ -9,7 +9,7 @@ Synchroniser des contacts Salesforce vers HubSpot CRM. Le cas de depart est `Con
 - Une Private App ou une application OAuth.
 - Un token avec les scopes CRM necessaires.
 - Les proprietes HubSpot a alimenter: `email`, `firstname`, `lastname`, `phone`.
-- La version d'API cible. Le template utilise le modele date-versionne.
+- La version d'API cible. Le template utilise l'endpoint CRM v3 stable et verifie.
 
 ## Ou faire l'authentification dans Salesforce
 
@@ -38,7 +38,7 @@ Synchroniser des contacts Salesforce vers HubSpot CRM. Le cas de depart est `Con
 | Base URL | `https://api.hubapi.com` |
 | Salesforce Object | `Contact` |
 | External Object | `contacts` |
-| Endpoint Path | `/crm/objects/2026-03/contacts` |
+| Endpoint Path | `/crm/v3/objects/contacts` |
 | HTTP Method | `POST` |
 | Payload Mode | `Raw Mapping` |
 
@@ -46,10 +46,10 @@ Synchroniser des contacts Salesforce vers HubSpot CRM. Le cas de depart est `Con
 
 | Action | Methode | Endpoint |
 | --- | --- | --- |
-| Creer un contact | `POST` | `/crm/objects/2026-03/contacts` |
-| Lire un contact | `GET` | `/crm/objects/2026-03/contacts/{contactId}` |
-| Modifier un contact | `PATCH` | `/crm/objects/2026-03/contacts/{contactId}` |
-| Chercher des contacts | `POST` | `/crm/objects/2026-03/contacts/search` |
+| Creer un contact | `POST` | `/crm/v3/objects/contacts` |
+| Lire un contact | `GET` | `/crm/v3/objects/contacts/{contactId}` |
+| Modifier un contact | `PATCH` | `/crm/v3/objects/contacts/{contactId}` |
+| Chercher des contacts | `POST` | `/crm/v3/objects/contacts/search` |
 
 ## Mappings de depart
 
@@ -76,10 +76,9 @@ Synchroniser des contacts Salesforce vers HubSpot CRM. Le cas de depart est `Con
 
 - Les associations HubSpot, par exemple contact vers company, demandent une configuration dediee.
 - Verifier les scopes HubSpot avant d'activer le flux.
-- Si le client veut utiliser l'ancien endpoint v3, adapter l'endpoint dans le flux.
+- HubSpot propose aussi des APIs date-versionnees, par exemple `2026-03`. Pour une premiere mise en service, garder le v3 stable sauf decision technique explicite.
 
 ## Documentation officielle
 
-- https://developers.hubspot.com/docs/api-reference/latest/overview
 - https://developers.hubspot.com/docs/api-reference/legacy/crm/objects/contacts/create-contact
-
+- https://developers.hubspot.com/docs/api-reference/latest/overview
