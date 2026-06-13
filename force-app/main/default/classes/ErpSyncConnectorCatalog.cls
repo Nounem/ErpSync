@@ -129,7 +129,7 @@ public with sharing class ErpSyncConnectorCatalog {
             ),
             item(
                 'Zoho', 'CRM / Suite', 'Generic REST', 'OAuth via Named Credential',
-                'https://www.zohoapis.com', 'Ready via Generic REST', 'Zoho', '/crm/v6/Accounts', 'POST',
+                'https://www.zohoapis.com', 'Ready via Generic REST', 'Zoho', '/crm/v8/Accounts', 'POST',
                 'Root Key', 'data', 'Account', 'Accounts',
                 'Adapter par region Zoho et module cible.',
                 'Changer la base URL si le data center Zoho est EU/IN/AU et verifier le module CRM cible.',
@@ -137,7 +137,7 @@ public with sharing class ErpSyncConnectorCatalog {
             ),
             item(
                 'Pipedrive', 'CRM', 'Generic REST', 'API token ou OAuth via Named Credential',
-                'https://api.pipedrive.com', 'Ready via Generic REST', 'Pipedrive', '/v1/organizations', 'POST',
+                'https://api.pipedrive.com', 'Ready via Generic REST', 'Pipedrive', '/api/v2/organizations', 'POST',
                 'Raw Mapping', null, 'Account', 'organizations',
                 'Objets CRM simples via payload JSON.',
                 'Utiliser OAuth/Named Credential pour eviter les tokens dans l URL.',

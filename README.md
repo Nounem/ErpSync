@@ -9,6 +9,7 @@ Le bouton ci-dessus deploie les metadonnees Salesforce depuis GitHub. Apres le d
 ## Documentation projet
 
 - [Analyse du besoin - Application Salesforce LWC configurable d'integration ERP/CRM](docs/analyse-besoin-erp-sync.md)
+- [Guides connecteurs pas a pas](docs/connecteurs/README.md)
 
 ## Premier socle implemente
 
